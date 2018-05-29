@@ -1,4 +1,4 @@
-package com.hunaif.linked_list;
+package com.hunaif.stack.linked_list_implementation;
 
 public class LinkedList {
 
@@ -17,47 +17,14 @@ public class LinkedList {
     public Node getRoot(){
         return this.root;
     }
+    public void setRoot(Node root){
+        this.root = root;
+    }
 
     public void add(int data){
         root = new Node(data,root);
         size++;
     }
-    public void addToSorted(int data){
-        if(root == null) this.add(data);
-        else if (root.getData() > data) this.add(data);
-        else{
-            Node node = new Node(data,null);
-            Node curr = root;
-            Node prev = null;
-            while(curr.getNextNode() != null && curr.getData() < data) {
-                prev = curr;
-                curr = curr.getNextNode();
-            }
-            if(curr.getNextNode() == null) {
-                curr.setNextNode(node);
-            }
-            else {
-                prev.setNextNode(node);
-                node.setNextNode(curr);
-            }
-        }
-    }
-
-    public Node mergeSortedLists(Node head1, Node head2){
-        Node result = null;
-        if(head1 == null) return head2;
-        else if(head2 == null) return head1;
-        else if(head1.getData() > head2.getData()) {
-            result = head2;
-            result.setNextNode(mergeSortedLists(head1, head2.getNextNode()));
-        }
-        else {
-            result = head1;
-            result.setNextNode(mergeSortedLists(head1.getNextNode(), head2));
-        }
-        return result;
-    }
-
 
     public  Node find(int data){
         Node current = root;
